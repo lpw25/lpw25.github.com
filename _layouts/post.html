@@ -32,12 +32,12 @@ feeds: true
               <!-- month -->
               <li>{{ post.date | date: '%B' }}
                 <ul style="list-style: none">
-        {% else 
-          %}{% capture year %}{{ post.date | date: '%Y' }}{% endcapture 
-          %}{% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture 
-          %}{% capture month %}{{ post.date | date: '%B' }}{% endcapture 
-          %}{% capture nmonth %}{{ post.next.date | date: '%B' }}{% endcapture 
-          %}{% if year != nyear %}
+        {% else %}
+          {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+          {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+          {% capture month %}{{ post.date | date: '%B' }}{% endcapture %}
+          {% capture nmonth %}{{ post.next.date | date: '%B' }}{% endcapture %}
+          {% if year != nyear %}
                 </ul>
               </li>
             </ul>
