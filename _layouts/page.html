@@ -3,7 +3,9 @@
 <head>
 <title>{% if page.title %} {{ page.title }} | {% endif %} lpw25 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
 <style type="text/css">
   body {
     padding-top: 60px;
@@ -17,10 +19,10 @@
   <div class="navbar-inner">
 
     <div class="container">
-      <a class="brand" href="#">lpw25</a>
+      <a class="brand" href="http://lpw25.net/">lpw25</a>
       <ul class="nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">Blog</a></li>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="{{ site.posts.first.url }}">Blog</a></li>
       </ul>
     </div>
     
