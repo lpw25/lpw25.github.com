@@ -21,8 +21,16 @@
     <div class="container">
       <a class="brand" href="/">lpw25</a>
       <ul class="nav">
-        <li class="active"><a href="/index.html">Home</a></li>
-        <li><a href="{{ site.posts.first.url }}">Blog</a></li>
+        {% if page.nav_active == 'home' %}
+          <li class="active"><a href="/index.html">Home</a></li>
+          <li><a href="{{ site.posts.first.url }}">Blog</a></li>
+        {% elsif page.nav_active == 'blog' %}
+          <li><a href="/index.html">Home</a></li>
+          <li class="active"><a href="{{ site.posts.first.url }}">Blog</a></li>
+        {% else %}
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="{{ site.posts.first.url }}">Blog</a></li>
+        {% endif %}
       </ul>
     </div>
     
