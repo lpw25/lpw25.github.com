@@ -5,23 +5,28 @@ feeds: true
 ---
 <div class="row">
   <div class="span1 offset1">
-    {% if page.previous %}
-      <a href="{{ page.previous.url }}" class="btn btn-mini">&larr;</a>
-    {% endif %}
+    <br>
+    <div class="btn-group">
+      {% if page.previous %}
+        <a href="{{ page.previous.url }}" class="btn btn-mini">&larr;</a>
+      {% else %}
+        <button class="btn btn-mini disabled">&larr;</a>
+      {% endif %}
+      {% if page.next %}
+        <a href="{{ page.next.url }}" class="btn btn-mini">&rarr;</a>
+      {% else %}
+        <button class="btn btn-mini disabled">&rarr;</a>
+      {% endif %}
+    </div>
   </div>
   <div class="span6">
     <h2>{{ page.title }}</h2>
     <p><em>{{ page.date | date_to_long_string }}</em></p>
     {{ content }}
   </div>
-  <div class="span1">
-    {% if page.next %}
-      <a href="{{ page.next.url }}" class="btn btn-mini">&rarr;</a>
-    {% endif %}
-  </div>
-  <div class="span3">
-    <a class="btn btn-warning btn-mini" href="/rss.xml"><i class="icon-feed"></i> RSS</a>
-    <a class="btn btn-warning btn-mini" href="/atom.xml"><i class="icon-feed"></i> Atom</a>
+  <div class="span3 offset1">
+    <a class="btn btn-warning btn-mini" href="/rss.xml"><i class="icon-feed-simple"></i> RSS</a>
+    <a class="btn btn-warning btn-mini" href="/atom.xml"><i class="icon-feed-simple"></i> Atom</a>
     <h4> Archive </h4><img style="display: inline">
     <ul class="unstyled">
       {% for post in site.posts %}
