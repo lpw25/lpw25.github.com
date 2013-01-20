@@ -4,9 +4,14 @@
 <title>{% if page.title %} {{ page.title }} | {% endif %} lpw25 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% if page.feeds %}
+<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="ATOM Feed" href="/atom.xml" />
+{% endif %}
 <link href="/css/bootstrap.css" rel="stylesheet">
 <link href="/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="/css/syntax.css" rel="stylesheet">
+<link href="/css/openwebicons-bootstrap.css" rel="stylesheet">
 <style type="text/css">
   body {
     padding-top: 60px;

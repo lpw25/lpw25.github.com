@@ -1,6 +1,7 @@
 ---
 layout: page
 nav_active: blog
+feeds: true
 ---
 <div class="row">
   <div class="span1 offset1">
@@ -10,7 +11,7 @@ nav_active: blog
   </div>
   <div class="span6">
     <h2>{{ page.title }}</h2>
-    <em>{{ page.date | date_to_long_string }}</em>
+    <p><em>{{ page.date | date_to_long_string }}</em></p>
     {{ content }}
   </div>
   <div class="span1">
@@ -19,7 +20,9 @@ nav_active: blog
     {% endif %}
   </div>
   <div class="span3">
-    <h4> Archive </h4>
+    <a class="btn btn-warning btn-mini" href="/rss.xml"><i class="icon-feed"></i> RSS</a>
+    <a class="btn btn-warning btn-mini" href="/atom.xml"><i class="icon-feed"></i> Atom</a>
+    <h4> Archive </h4><img style="display: inline">
     <ul class="unstyled">
       {% for post in site.posts %}
         {% if forloop.first %}			
