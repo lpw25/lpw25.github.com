@@ -3,6 +3,7 @@ layout: post
 title: An alternative to camlp4 
 --- 
 <div class="alert alert-error">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
 This blog post is still under construction. Go Away!     
 </div>
 
@@ -52,6 +53,7 @@ no reason that both cannot be supported by the compiler using different syntax.
 
 From a fairly unscientific look at various uses of camlp4, I think that it is
 important to support at least the following kinds of attribute:
+
 * Simple named quotations for expressions, patterns and type expressions:
 {% highlight ocaml %}
 let x = <:Foo.foo < some random text >>
@@ -101,15 +103,18 @@ included at some point.
 The most basic form of the idea is to have an abstract datatype `'a ty`, where
 `t ty` represents the structure of type `t`. Values of type `ty` can be created
 using expressions of the like:
+
 {% highlight ocaml %} 
 (type val int list) 
 {% endhighlight %}
 
 It would also be possible to allow the "type constructor quotations" suggested
 in the previous section to be included within the `ty` type. For example:
+
 {% highlight ocaml %} 
 (type val int %print(ignore) option) 
 {% endhighlight %}
+
 Would include the strings "print" and "ignore" within the run-time type
 representation.
 
@@ -119,6 +124,7 @@ While quotation-based extensions can be implemented using AST transformers, they
 could also be implemented within the language itself.
 
 The idea is to allow quotations to be created like:
+
 {% highlight ocaml %}
 quotation foo ctx str = ...
 {% endhighlight %}
@@ -130,9 +136,11 @@ type of AST node that is expected in that context. The context would also
 include information such as the location of the quotation.
 
 The quotation `foo` would be used using the syntax:
+
 {% highlight ocaml %}
 <:foo< some text >>
 {% endhighlight %}
+
 This would lookup the quotation with name foo, apply it to the string " some text ",
 and then be replaced with the returned AST fragment.
 
@@ -163,6 +171,7 @@ quotations.
 
 This will also allow quotations to be provided by libraries. So that the
 following code would perfectly possible:
+
 {% highlight ocaml %}
 <:Core.Monad.do < x <- return foo;;
                   y <- bar x;;
