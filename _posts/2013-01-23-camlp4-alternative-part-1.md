@@ -8,7 +8,7 @@ meta-programming facilities. However, there is general agreement that camlp4 is
 too powerful and complex for the applications that it is most commonly used for,
 and there is a growing movement to provide a simpler alternative.
 
-The [wg-camlp4@ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4) mailing
+The [wg-camlp4@lists.ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4) mailing
 list has been created to discuss implementing this simpler alternative. I am
 writing this blog post as a way of kick-starting the discussion on this list, by
 discussing my thoughts on what needs to be done.
@@ -26,21 +26,60 @@ programmers to write extensions, and to include such extensions within the
 language itself rather than as part of a pre-processor. I will discuss my
 thoughts on this phase in a later blog post.
 
-#### AST transformers, attributes and quotations ####
+#### Camlp4 in the wild ####
 
 Camlp4 works by producing pre-processors that parse an OCaml file and then output
 a syntax tree directly into the compiler. Extensions are written by extending
 the default OCaml parser and converting any new syntax tree nodes into existing
 OCaml nodes. Most of the complexity in camlp4 comes from its extensible
 grammars, which gives camlp4 the ability to extend the OCaml syntax
-arbitrarily. However, most applications do not need this ability. A much simpler
-alternative is to use *AST transformers*, *attributes* and *quotations*.
+arbitrarily. However, most applications do not need this ability. 
+
+From an ad-hoc survey of camlp4 extensions in the OPAM repository, most of the
+popular camlp4 extensions come into one of three categories: 
+<ul>
+<li>
+Type-conv style extensions such as
+[sexplib](https://bitbucket.org/yminsky/ocaml-core/wiki/Home),
+[ORM](https://github.com/mirage/orm) and
+[dyntype](https://github.com/mirage/dyntype). These extend the syntax to allow
+code such as:
+{% highlight ocaml %}
+type t = 
+{ x: int;
+  y: int; }
+with foo, bar( (* some valid expression *) )
+{% endhighlight %}
+</li>
+<li>
+Extensions using camlp4's quotations syntax such as [COW](https://github.com/mirage/ocaml-cow). These look like:
+{% highlight ocaml %}
+<:html< <body> Hello world </body>  >>
+{% endhighlight %}
+</li>
+<li>
+Other syntax extensions that could be expressed using existing syntax or the
+camlp4 quotation syntax. For example,
+[pa_js](http://ocsigen.org/js_of_ocaml/manual/library) provides an `##` operator
+for accessing javascript objects. This could easily be replaced by a valid
+operator such as `%%`.
+</li>
+</ul>
+
+By providing support for these specific kinds of extension, we can provide an
+alternative to camlp4 for the majority of its applications.
+
+#### AST transformers, attributes and quotations ####
+
+A much simpler alternative to allowing arbitrary syntax extensions is to use
+*AST transformers*, *attributes* and *quotations*.
 
 AST transformers are simply functions that perform transformations on the OCaml
-syntax tree. These can already be implemented using the new "-ppx" command line
-option that has been included on the OCaml development trunk by Alain
-Frisch. This option accepts a program as an argument, and pipes the syntax tree
-through that program after parsing and before type checking.
+syntax tree. These can already be implemented using the new
+"[-ppx](http://www.lexifi.com/blog/syntax-extensions-without-camlp4-lets-do-it)"
+command line option that has been included on the OCaml development trunk by
+Alain Frisch. This option accepts a program as an argument, and pipes the syntax
+tree through that program after parsing and before type checking.
 
 Attributes are places in the grammar where generic data can be attached to the
 syntax tree. This data is simply ignored by the main OCaml compiler, but it can
@@ -56,9 +95,7 @@ I prefer quotation attributes to attributes that are parsed by the compiler
 because they are more flexible. However there is no reason that both kinds
 cannot be supported by the compiler using different syntax.
 
-From a fairly unscientific look at various uses of camlp4, I think that it is
-important to support at least the following kinds of attribute:
-
+I think that it is important to support at least the following kinds of attribute:
 <ul>
 <li>
 Simple named quotations for expressions, patterns and type expressions:
@@ -109,5 +146,5 @@ they are not sufficient. It would be very useful to hear from anyone who has
 written camlp4 extensions about what kind of extensions they have written, and
 what they think would be necessary to support their extensions without
 camlp4. So please join the
-[wg-camlp4@ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4) list and post
+[wg-camlp4@lists.ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4) list and post
 your thoughts.
