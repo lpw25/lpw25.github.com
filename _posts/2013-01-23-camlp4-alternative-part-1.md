@@ -1,6 +1,6 @@
 --- 
 layout: post 
-title: An alternative to camlp4 - 1
+title: An alternative to camlp4 - Part 1
 --- 
 Since its creation camlp4 has proven to be a very useful tool. People have used
 it to experiment with new features for OCaml and to provide interesting
@@ -63,8 +63,8 @@ Extensions using camlp4's quotations syntax such as
 Other syntax extensions that could be expressed using existing syntax or the
 camlp4 quotation syntax. For example, 
 <a href="http://ocsigen.org/js_of_ocaml/">js_of_ocaml</a> provides a
-`##` operator for accessing javascript objects. This could easily be replaced by
-a valid operator such as `%%`.
+<code>##</code> operator for accessing javascript objects. This could easily be replaced by
+a valid operator such as <code>%%</code>.
 </li>
 </ul>
 
