@@ -45,10 +45,12 @@ Type-conv style extensions such as
 <a href="https://github.com/mirage/dyntype">dyntype</a>. 
 These extend the syntax to allow code such as:
 {% highlight ocaml %}
-type t = 
-{ x: int;
-  y: int; }
-with foo, bar( (* some valid expression *) )
+type t =
+{
+  x : int with default(42);
+  y : int with default(3), sexp_drop_default;
+  z : int with default(3), sexp_drop_if(z_test);
+} with sexp
 {% endhighlight %}
 </li>
 <li>
