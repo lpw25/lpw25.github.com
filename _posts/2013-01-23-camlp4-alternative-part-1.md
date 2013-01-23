@@ -9,12 +9,12 @@ This blog post is still under construction. Go Away!
 
 Since its creation camlp4 has proven to be a very useful tool. People have used
 it to experiment with new features for OCaml, and to provide interesting
-metaprogramming facilities. However, there is general agreement that camlp4 is
+meta-programming facilities. However, there is general agreement that camlp4 is
 too powerful and complex for the applications that it is most commonly used for,
 and there is a growing movement to provide a simpler alternative.
 
 The wg-camlp4@ocaml.org mailing list has been created to discuss implementing
-this simpler alternative. I am writing this blog post as a way of kickstarting
+this simpler alternative. I am writing this blog post as a way of kick-starting
 the discussion on this list, by discussing my thoughts on what needs to be done.
 
 Personally, I think that providing a real alternative to camlp4 involves two
@@ -32,11 +32,11 @@ thoughts on this phase in a later blog post.
 
 #### AST transformers, attributes and quotations ####
 
-Camlp4 works by producing preprocessors that parse an OCaml file and then output
+Camlp4 works by producing pre-processors that parse an OCaml file and then output
 a syntax tree directly into the compiler. Extensions are written by extending
 the default OCaml parser and converting any new syntax tree nodes into existing
 OCaml nodes. Most of the complexity in camlp4 comes from its extensible
-grammars, which gives camlp4 the ability to extend the ocaml syntax
+grammars, which gives camlp4 the ability to extend the OCaml syntax
 arbitrarily. However, most applications do not need this ability. A much simpler
 alternative is to use *AST transformers*, *attributes* and *quotations*.
 
@@ -54,7 +54,7 @@ Quotations are any construct that is not lexed or parsed by the compiler. These
 can be attributes, expressions, patterns etc. The contents of a quotation can be
 lexed and parsed by an AST transformer and converted into a regular AST node.
 
-Before support for attributes and quotatioons can be added to the compiler
+Before support for attributes and quotations can be added to the compiler
 decisions need to be made about what kinds of attributes to support. Personally
 I prefer quotation attributes to attributes that are parsed by the compiler
 because they are more flexible. However there is no reason that both kinds
@@ -89,8 +89,8 @@ transformers.
 
 In order to make this transition easy, work must also be done to provide tools
 for manipulating OCaml's AST and parsing quotations. It would also be worthwhile
-trying to normalize some of the stranger corners of the OCaml syntax tree. This
-will make writting AST transformers simpler and more robust
+trying to normalise some of the stranger corners of the OCaml syntax tree. This
+will make writing AST transformers simpler and more robust
 
 Finally, the "-ppx" option must be integrated into the many OCaml build
 systems.
@@ -98,8 +98,8 @@ systems.
 #### Join the discussion ####
 
 The above suggestions are just the attributes and quotations that I think will
-be nessecery to provide a viable alternative to camlp4. However, I suspect that
+be necessary to provide a viable alternative to camlp4. However, I suspect that
 they are not sufficient. It would be very useful to hear from anyone who has
 written camlp4 extensions about what kind of extensions they have written, and
-what they think would be nessecery to support their extensions without
+what they think would be necessary to support their extensions without
 camlp4. So please join the wg-camlp4@ocaml.org list and post your thoughts.
