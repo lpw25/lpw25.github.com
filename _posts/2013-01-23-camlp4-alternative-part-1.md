@@ -1,17 +1,17 @@
 --- 
 layout: post 
-title: An alternative to camlp4, Part 1
+title: An alternative to camlp4 - 1
 --- 
 Since its creation camlp4 has proven to be a very useful tool. People have used
-it to experiment with new features for OCaml, and to provide interesting
+it to experiment with new features for OCaml and to provide interesting
 meta-programming facilities. However, there is general agreement that camlp4 is
 too powerful and complex for the applications that it is most commonly used for,
 and there is a growing movement to provide a simpler alternative.
 
-The [wg-camlp4@lists.ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4) mailing
-list has been created to discuss implementing this simpler alternative. I am
-writing this blog post as a way of kick-starting the discussion on this list, by
-discussing my thoughts on what needs to be done.
+The [wg-camlp4@lists.ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4)
+mailing list has been created to discuss implementing this simpler
+alternative. This blog post is a way of kick-starting the discussion on this
+list, by explaining my thoughts on what needs to be done.
 
 Personally, I think that providing a real alternative to camlp4 involves two
 phases. The first phase is to provide support for implementing the most popular
@@ -36,7 +36,7 @@ grammars, which gives camlp4 the ability to extend the OCaml syntax
 arbitrarily. However, most applications do not need this ability. 
 
 From an ad-hoc survey of camlp4 extensions in the OPAM repository, most of the
-popular camlp4 extensions fall into one of three categories: 
+popular camlp4 extensions seem to fall into one of three categories: 
 <ul>
 <li>
 Type-conv style extensions such as 
@@ -46,10 +46,9 @@ Type-conv style extensions such as
 These extend the syntax to allow code such as:
 {% highlight ocaml %}
 type t =
-{
-  x : int with default(42);
+{ x : int with default(42);
   y : int with default(3), sexp_drop_default;
-  z : int with default(3), sexp_drop_if(z_test);
+  z : int with default(3), sexp_drop_if(z_test); 
 } with sexp
 {% endhighlight %}
 </li>
@@ -93,10 +92,10 @@ can be attributes, expressions, patterns etc. The contents of a quotation can be
 lexed and parsed by an AST transformer and converted into a regular AST node.
 
 Before support for attributes and quotations can be added to the compiler
-decisions need to be made about what kinds of attributes to support. Personally
-I prefer quotation attributes to attributes that are parsed by the compiler
-because they are more flexible. However there is no reason that both kinds
-cannot be supported by the compiler using different syntax.
+decisions need to be made about what kinds of attributes and quotations to
+support. Personally I prefer quotation attributes to attributes that are parsed
+by the compiler because they are more flexible. However there is no reason that
+both kinds cannot be supported by the compiler using different syntax.
 
 I think that it is important to support at least the following kinds of attribute:
 <ul>
@@ -109,7 +108,7 @@ let x = <:Foo.foo < some random text >>
 <li>
 Type constructor quotation attributes:
 {% highlight ocaml %}
-let x: int %foo, float %bar( some random text)
+let x: int %foo, float %bar( some random text) = (3, 4.5)
 {% endhighlight %}
 </li>
 <li>
