@@ -2,20 +2,16 @@
 layout: post 
 title: An alternative to camlp4, Part 1
 --- 
-<div class="alert alert-error">
-<button type="button" class="close" data-dismiss="alert">&times;</button>
-This blog post is still under construction. Go Away!     
-</div>
-
 Since its creation camlp4 has proven to be a very useful tool. People have used
 it to experiment with new features for OCaml, and to provide interesting
 meta-programming facilities. However, there is general agreement that camlp4 is
 too powerful and complex for the applications that it is most commonly used for,
 and there is a growing movement to provide a simpler alternative.
 
-The wg-camlp4@ocaml.org mailing list has been created to discuss implementing
-this simpler alternative. I am writing this blog post as a way of kick-starting
-the discussion on this list, by discussing my thoughts on what needs to be done.
+The [wg-camlp4@ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4) mailing
+list has been created to discuss implementing this simpler alternative. I am
+writing this blog post as a way of kick-starting the discussion on this list, by
+discussing my thoughts on what needs to be done.
 
 Personally, I think that providing a real alternative to camlp4 involves two
 phases. The first phase is to provide support for implementing the most popular
@@ -63,25 +59,35 @@ cannot be supported by the compiler using different syntax.
 From a fairly unscientific look at various uses of camlp4, I think that it is
 important to support at least the following kinds of attribute:
 
-* Simple named quotations for expressions, patterns and type expressions:
+<ul>
+<li>
+Simple named quotations for expressions, patterns and type expressions:
 {% highlight ocaml %}
 let x = <:Foo.foo < some random text >>
 {% endhighlight %}
-* Type constructor quotation attributes:
+</li>
+<li>
+Type constructor quotation attributes:
 {% highlight ocaml %}
 let x: int %foo, float %bar( some random text)
 {% endhighlight %}
-* Type-conv style definition attributes:
+</li>
+<li>
+Type-conv style definition attributes:
 {% highlight ocaml %}
 type t = 
 { x: int;
   y: int; }
 with foo, bar( (* some valid expression *) )
 {% endhighlight %}
-* Annotating types with syntactically valid expressions:
+</li>
+<li>
+Annotating types with syntactically valid expressions:
 {% highlight ocaml %}
 let x: string @@ (* some valid expression *) = ()
 {% endhighlight %}
+</li>
+</ul>
 
 Once support for these attributes and quotations is added to OCaml I think that
 the majority of camlp4 applications could be easily converted into AST
@@ -102,4 +108,6 @@ be necessary to provide a viable alternative to camlp4. However, I suspect that
 they are not sufficient. It would be very useful to hear from anyone who has
 written camlp4 extensions about what kind of extensions they have written, and
 what they think would be necessary to support their extensions without
-camlp4. So please join the wg-camlp4@ocaml.org list and post your thoughts.
+camlp4. So please join the
+[wg-camlp4@ocaml.org](http://lists.ocaml.org/listinfo/wg-camlp4) list and post
+your thoughts.
