@@ -36,7 +36,7 @@ grammars, which gives camlp4 the ability to extend the OCaml syntax
 arbitrarily. However, most applications do not need this ability. 
 
 From an ad-hoc survey of camlp4 extensions in the OPAM repository, most of the
-popular camlp4 extensions come into one of three categories: 
+popular camlp4 extensions fall into one of three categories: 
 <ul>
 <li>
 Type-conv style extensions such as 
