@@ -39,11 +39,11 @@ From an ad-hoc survey of camlp4 extensions in the OPAM repository, most of the
 popular camlp4 extensions come into one of three categories: 
 <ul>
 <li>
-Type-conv style extensions such as
-[sexplib](https://bitbucket.org/yminsky/ocaml-core/wiki/Home),
-[ORM](https://github.com/mirage/orm) and
-[dyntype](https://github.com/mirage/dyntype). These extend the syntax to allow
-code such as:
+Type-conv style extensions such as 
+<a href="https://bitbucket.org/yminsky/ocaml-core/wiki/Home">sexplib</a>, 
+<a href="https://github.com/mirage/orm">ORM</a> and 
+<a href="https://github.com/mirage/dyntype">dyntype</a>. 
+These extend the syntax to allow code such as:
 {% highlight ocaml %}
 type t = 
 { x: int;
@@ -52,17 +52,18 @@ with foo, bar( (* some valid expression *) )
 {% endhighlight %}
 </li>
 <li>
-Extensions using camlp4's quotations syntax such as [COW](https://github.com/mirage/ocaml-cow). These look like:
+Extensions using camlp4's quotations syntax such as 
+<a href="https://github.com/mirage/ocaml-cow">COW</a>. These look like:
 {% highlight ocaml %}
 <:html< <body> Hello world </body>  >>
 {% endhighlight %}
 </li>
 <li>
 Other syntax extensions that could be expressed using existing syntax or the
-camlp4 quotation syntax. For example,
-[pa_js](http://ocsigen.org/js_of_ocaml/manual/library) provides an `##` operator
-for accessing javascript objects. This could easily be replaced by a valid
-operator such as `%%`.
+camlp4 quotation syntax. For example, 
+<a href="http://ocsigen.org/js_of_ocaml/">js_of_ocaml</a> provides a
+`##` operator for accessing javascript objects. This could easily be replaced by
+a valid operator such as `%%`.
 </li>
 </ul>
 
