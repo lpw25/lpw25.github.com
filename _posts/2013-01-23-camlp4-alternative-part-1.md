@@ -1,6 +1,7 @@
 --- 
 layout: post 
 title: An alternative to camlp4 - Part 1
+tags: ["wg:camlp4"]
 --- 
 Since its creation camlp4 has proven to be a very useful tool. People have used
 it to experiment with new features for OCaml and to provide interesting

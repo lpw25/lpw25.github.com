@@ -16,6 +16,9 @@ layout: nil
     <item>
       <title>{{ post.title }}</title>
       <link>http://lpw25.net{{ post.url }}</link>
+      {% for tag in post.tags %}
+      <category>{{ tag }}</category>
+      {% endfor %}
       <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
       <author>leo@lpw25.net (Leo White)</author>
       <guid>http://lpw25.net{{ post.id }}</guid>
