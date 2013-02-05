@@ -92,10 +92,10 @@ These problems are related to the fact that OCaml is an impure language. Any
 expression (including module definitions) can have side-effects, and the
 run-time behaviour of the program is simply the combination of all these
 side-effects. This makes it difficult to separate the side-effects that are
-related to a quotation from the side-effects that are part of the programs
+related to a quotation from the side-effects that are part of the program's
 execution.
 
-Despite appearing along-side other functions in the program, `foo` must be
+Despite appearing alongside other functions in the program, `foo` must be
 executed in a completely separate environment. Any side-effects (e.g. mutable
 state, I/O) that are produced while creating and executing `foo` will be
 completely separate from the side-effects of the other functions in its module.
@@ -195,7 +195,7 @@ could be used with the syntax:
 Unlike quotations, more general templates must be able to interpret AST nodes
 themselves. This means we must provide mechanisms for handling AST nodes. For
 this purpose, the standard library would include a simpler version of the
-AstMapper module that is in compiler-libs.
+`AstMapper` module that is in compiler-libs.
 
 We could also allow the AST quotations (e.g. `Ast.expr) to be used as
 patterns. This approach can be a bit fragile because syntactic sugar can cause a
