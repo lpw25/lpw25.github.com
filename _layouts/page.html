@@ -10,13 +10,23 @@
 {% endif %}
 <link href="/css/bootstrap.css" rel="stylesheet">
 <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-<link href="/css/syntax.css" rel="stylesheet">
+<link href="/css/friendly-syntax.css" rel="stylesheet">
 <link href="/css/openwebicons-bootstrap.css" rel="stylesheet">
 <style type="text/css">
   body {
     padding-top: 60px;
     padding-bottom: 40px;
   }
+
+  .toc ul { margin-left: 0; }
+
+  {% if page.toc_start_depth %}
+  .toc {% for i in (1..page.toc_start_depth) %}ul {% endfor %}{ margin-left: 25px; }
+  {% endif %}
+
+  {% if page.toc_end_depth %}
+  .toc {% for i in (1..page.toc_end_depth) %}ul {% endfor %}{ display: none; }
+  {% endif %}
 </style>
 <script type="text/javascript">
 

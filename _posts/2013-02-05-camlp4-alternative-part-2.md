@@ -140,7 +140,7 @@ This will make it easy for quotations to be provided by libraries. So that the
 following code would perfectly possible:
 
 {% highlight ocaml %}
-{:Core.Web.html{<body> Hello, world! </body>}}
+{:Core.Web.html{<body> hello, world! </body>}}
 {% endhighlight %}
 
 ##### Quotations in different contexts #####

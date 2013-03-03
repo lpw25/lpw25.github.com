@@ -57,7 +57,7 @@ type t =
 Extensions using camlp4's quotations syntax such as 
 <a href="https://github.com/mirage/ocaml-cow">COW</a>. These look like:
 {% highlight ocaml %}
-<:html< <body> Hello world </body>  >>
+<:html< <body> hello world </body>  >>
 {% endhighlight %}
 </li>
 <li>

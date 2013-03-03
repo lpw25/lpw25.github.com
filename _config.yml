@@ -1,1 +1,5 @@
 markdown: rdiscount
+
+rdiscount:
+  extensions: [smart, generate_toc]
+  toc_token: "{:toc}"
