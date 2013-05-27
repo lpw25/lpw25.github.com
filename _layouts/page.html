@@ -53,12 +53,19 @@
         {% if page.nav_active == 'home' %}
           <li class="active"><a href="/index.html">Home</a></li>
           <li><a href="{{ site.posts.first.url }}">Blog</a></li>
+          <li><a href="/papers.html">Papers</a></li>
         {% elsif page.nav_active == 'blog' %}
           <li><a href="/index.html">Home</a></li>
           <li class="active"><a href="{{ site.posts.first.url }}">Blog</a></li>
+          <li><a href="/papers.html">Papers</a></li>
+        {% elsif page.nav_active == 'papers' %}
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="{{ site.posts.first.url }}">Blog</a></li>
+          <li class="active"><a href="/papers.html">Papers</a></li>
         {% else %}
           <li><a href="/index.html">Home</a></li>
           <li><a href="{{ site.posts.first.url }}">Blog</a></li>
+          <li><a href="/papers.html">Papers</a></li>
         {% endif %}
       </ul>
     </div>
