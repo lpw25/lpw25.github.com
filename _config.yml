@@ -1,5 +1,10 @@
-markdown: rdiscount
+markdown: kramdown
+
+kramdown:
+  toc_levels: 1..4
 
 rdiscount:
   extensions: [smart, generate_toc]
   toc_token: "{:toc}"
+
+pygments: true

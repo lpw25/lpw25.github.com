@@ -2,8 +2,6 @@
 layout: post 
 title: Adding namespaces to OCaml
 tags: ["ocaml"]
-toc_start_depth: 3
-toc_end_depth: 5
 --- 
 
 {% include toc.md %}

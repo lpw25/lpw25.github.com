@@ -17,16 +17,6 @@
     padding-top: 60px;
     padding-bottom: 40px;
   }
-
-  .toc ul { margin-left: 0; }
-
-  {% if page.toc_start_depth %}
-  .toc {% for i in (1..page.toc_start_depth) %}ul {% endfor %}{ margin-left: 25px; }
-  {% endif %}
-
-  {% if page.toc_end_depth %}
-  .toc {% for i in (1..page.toc_end_depth) %}ul {% endfor %}{ display: none; }
-  {% endif %}
 </style>
 <script type="text/javascript">
 
@@ -43,7 +33,6 @@
 </script>
 </head>
 <body>
-<div id="page">
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
 
@@ -72,7 +61,6 @@
     
   </div>
 </div>
-<div id="header">
 <div class="container">
 {{ content }}
 </div>

@@ -1,4 +1,7 @@
-<div class="well well-small">
-<h4>Contents</h4>
-<div class="toc">{:toc}</div>
+<div class="well well-small" markdown="1">
+<h4>
+Contents
+</h4>
+* Contents
+{:toc}
 </div>
