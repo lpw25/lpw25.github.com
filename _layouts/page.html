@@ -43,18 +43,27 @@
           <li class="active"><a href="/index.html">Home</a></li>
           <li><a href="{{ site.posts.first.url }}">Blog</a></li>
           <li><a href="/papers.html">Papers</a></li>
+          <li><a href="/talks.html">Talks</a></li>
         {% elsif page.nav_active == 'blog' %}
           <li><a href="/index.html">Home</a></li>
           <li class="active"><a href="{{ site.posts.first.url }}">Blog</a></li>
           <li><a href="/papers.html">Papers</a></li>
+          <li><a href="/talks.html">Talks</a></li>
         {% elsif page.nav_active == 'papers' %}
           <li><a href="/index.html">Home</a></li>
           <li><a href="{{ site.posts.first.url }}">Blog</a></li>
           <li class="active"><a href="/papers.html">Papers</a></li>
+          <li><a href="/talks.html">Talks</a></li>
+        {% elsif page.nav_active == 'talks' %}
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="{{ site.posts.first.url }}">Blog</a></li>
+          <li><a href="/papers.html">Papers</a></li>
+          <li class="active"><a href="/talks.html">Talks</a></li>
         {% else %}
           <li><a href="/index.html">Home</a></li>
           <li><a href="{{ site.posts.first.url }}">Blog</a></li>
           <li><a href="/papers.html">Papers</a></li>
+          <li><a href="/talks.html">Talks</a></li>
         {% endif %}
       </ul>
     </div>
