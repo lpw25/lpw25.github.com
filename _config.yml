@@ -7,4 +7,4 @@ rdiscount:
   extensions: [smart, generate_toc]
   toc_token: "{:toc}"
 
-pygments: true
+highlighter: rouge
