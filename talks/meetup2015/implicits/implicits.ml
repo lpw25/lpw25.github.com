@@ -13,12 +13,12 @@
 module type Show = sig
   type t
   val show : t -> string
-end
+end;;
 
 
 
-let show (implicit S : Show) x =
-  S.show x
+let show {S : Show} x =
+  S.show x;;
 
 
 
@@ -48,14 +48,14 @@ implicit module ShowInt = struct
   type t = int
   let show = string_of_int
 end
-
+;;
 
 
 implicit module ShowFloat = struct
   type t = float
   let show = string_of_float
 end
-
+;;
 
 
 
@@ -100,12 +100,12 @@ show "foo";;
 
 (* Implicit parameters *)
 
-let print (implicit S : Show) (x : S.t) =
+let print {S : Show} (x : S.t) =
     print_endline (show x)
+;;
 
 
-
-print 4.5
+print 4.5;;
 
 
 
@@ -150,17 +150,17 @@ let print x =
 
 (* Implicit scope *)
 
-type foo = Foo
+type foo = Foo;;
 
 module M = struct
   implicit module ShowFoo = struct
     type t = foo
     let show Foo = "Foo"
   end
-end
+end;;
 
 let () = print Foo (* Error *)
-
+;;
 
 
 
@@ -189,12 +189,13 @@ let () = print Foo (* Error *)
 
 (* Implicit functors *)
 
-implicit functor ShowList (S:Show) = struct
+implicit module ShowList {S : Show} = struct
   type t = S.t list
   let show l =
     let sl = List.map S.show l in
     "[" ^ String.concat "; " sl ^ "]"
 end
+;;
 
 show [1; 2; 3];;
 
@@ -220,11 +221,12 @@ implicit module ShowInt1 = struct
   type t = int
   let show = string_of_int
 end
-
+;;
 implicit module ShowInt2 = struct
   type t = int
   let show _ = "An int"
 end
+;;
 
 show 9;;
 
@@ -246,7 +248,7 @@ show 9;;
 
 (* Explicit implicit arguments *)
 
-show (implicit ShowInt1) 9;;
+show {ShowInt1} 9;;
 
 
 
@@ -278,13 +280,15 @@ module type Monad = sig
   val return : 'a -> 'a t
   val bind : 'a t -> ('a -> 'b t) -> 'b t
 end
+;;
 
-let return (implicit M : Monad) x =
+let return {M : Monad} x =
   M.return x
+;;
 
-let (>>=) (implicit M : Monad) m k =
+let (>>=) {M : Monad} m k =
   M.bind m k
-
+;;
 
 
 
@@ -314,6 +318,7 @@ implicit module MonadList = struct
       (fun x acc -> k x @ acc)
       m []
 end
+;;
 
 implicit module MonadOption = struct
   type 'a t = 'a option
@@ -323,7 +328,7 @@ implicit module MonadOption = struct
     | None -> None
     | Some x -> k x
 end
-
+;;
 
 
 
@@ -369,8 +374,8 @@ Some 5.5 >>= fun x -> return (x +. 1.0);;
 
 
 
-let when_ (implicit M : Monad) p s : unit M.t =
-  if p then s else return ()
+let when_ {M : Monad} p s : unit M.t =
+  if p then s else return ();;
 
 
 
@@ -406,13 +411,15 @@ module type Graph = sig
   val empty : t
   val add_edge : t -> vertex -> vertex -> t
 end
+;;
 
-let empty (implicit G : Graph) () =
+let empty {G : Graph} () =
   G.empty
+;;
 
-let add_edge (implicit G : Graph) g f t =
+let add_edge {G : Graph} g f t =
   G.add_edge g f t
-
+;;
 
 
 
@@ -439,7 +446,7 @@ implicit module IntGraph = struct
   let empty = []
   let add_edge t v1 v2 =
     (v1, v2) :: (v2, v1) :: t
-end
+end;;
 
 
 
@@ -474,7 +481,7 @@ module StringMap =
              type t = string
              let compare = compare
            end)
-
+;;
 
 implicit module StringGraph = struct
     type t = string list StringMap.t
@@ -489,7 +496,7 @@ implicit module StringGraph = struct
         (v1 :: (try StringMap.find v2 t
                 with Not_found -> []))
         t)
-end
+end;;
 
 
 
@@ -512,13 +519,13 @@ end
 
 (add_edge
    (add_edge (empty ()) 1 3)
-   3 9)
+   3 9);;
 
 
 
 (add_edge
    (add_edge (empty ()) "LDN" "NYC")
-   "NYC" "HKG")
+   "NYC" "HKG");;
 
 
 
@@ -533,7 +540,7 @@ end
 
 
 
-let my_graph (implicit G : Graph) (x : G.vertex)
+let my_graph {G : Graph} (x : G.vertex)
              (y : G.vertex) (z : G.vertex) =
   add_edge
     (add_edge (empty ()) x y)
@@ -542,7 +549,7 @@ let my_graph (implicit G : Graph) (x : G.vertex)
 
 my_graph 1 3 9;;
 
-my_graph "LDN" "NYC" "HKG"
+my_graph "LDN" "NYC" "HKG";;
 
 
 
